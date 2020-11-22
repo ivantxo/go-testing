@@ -4,15 +4,11 @@ import (
 	"fmt"
 )
 
-var i int = 42
-
 func main() {
-	fmt.Println(i)
+	var i int = 42
+	fmt.Printf("%v, %T\n", i, i)
 
-	// Is possible here, different scopes, shadowing
-	var i int = 27
-	fmt.Println(i)
-
-	// Can't re-declare variables in the same scope
-	// i := 13
+	var j float32
+	j = float32(i)
+	fmt.Printf("%v, %T\n", j, j)
 }
