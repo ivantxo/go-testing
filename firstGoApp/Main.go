@@ -5,17 +5,15 @@ import (
 )
 
 func main() {
-	// boolean declaration
-	var n bool = true
+	n := 42
 	fmt.Printf("%v, %T\n", n, n)
 
-	// boolean declaration 2
-	var h bool
-	fmt.Printf("%v, %T\n", h, h)
+	// Integer types
+	// int8, int16, int32, int64
+	// uint8, uint16, uint32
 
-	// logical tests
-	m := 1 == 1
-	o := 1 == 2
-	fmt.Printf("%v, %T\n", m, m)
-	fmt.Printf("%v, %T\n", o, o)
+	var a int = 3
+	var b int8 = 10
+	// fmt.Println(a + b) // Type mismatch
+	fmt.Println(a + int(b))
 }
