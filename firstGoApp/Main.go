@@ -2,19 +2,20 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-	var i int = 42
-	fmt.Printf("%v, %T\n", i, i)
+	// boolean declaration
+	var n bool = true
+	fmt.Printf("%v, %T\n", n, n)
 
-	var j float32
-	j = float32(i)
-	fmt.Printf("%v, %T\n", j, j)
+	// boolean declaration 2
+	var h bool
+	fmt.Printf("%v, %T\n", h, h)
 
-	var k string
-	// k = string(i) // wrong type convertion to string
-	k = strconv.Itoa(i) // right way of type converting
-	fmt.Printf("%v, %T\n", k, k)
+	// logical tests
+	m := 1 == 1
+	o := 1 == 2
+	fmt.Printf("%v, %T\n", m, m)
+	fmt.Printf("%v, %T\n", o, o)
 }
