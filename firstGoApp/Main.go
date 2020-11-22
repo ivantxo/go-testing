@@ -1,18 +1,11 @@
 package main
 
-import "fmt"
-
-var i int = 42
+var (
+	actorName    string = "Elisabeth Sladen"
+	companion    string = "Sarah Jane Smith"
+	doctorNumber int    = 3
+	season       int    = 11
+)
 
 func main() {
-	// var i int
-	// i = 42
-
-	// var j int = 27
-
-	// k := 99.
-
-	// fmt.Println(i)
-	// fmt.Printf("%v, %T", k, k)
-	fmt.Printf("%v, %T", i, i)
 }
