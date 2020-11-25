@@ -5,15 +5,10 @@ import (
 )
 
 func main() {
-	n := 42
-	fmt.Printf("%v, %T\n", n, n)
-
-	// Integer types
-	// int8, int16, int32, int64
-	// uint8, uint16, uint32
-
-	var a int = 3
-	var b int8 = 10
-	// fmt.Println(a + b) // Type mismatch
-	fmt.Println(a + int(b))
+	a := 10             // 1010
+	b := 3              // 0011
+	fmt.Println(a & b)  // 0010
+	fmt.Println(a | b)  // 1011
+	fmt.Println(a ^ b)  // 1001
+	fmt.Println(a &^ b) // 0100
 }
