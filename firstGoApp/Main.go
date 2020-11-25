@@ -4,10 +4,14 @@ import (
 	"fmt"
 )
 
-func main() {
-	r := 'a'
-	fmt.Printf("%v, %T\n", r, r)
+const a int16 = 27
 
-	var ru rune = 'a'
-	fmt.Printf("%v, %T\n", ru, ru)
+func main() {
+	const myConst int = 42
+	// myConst = 27 // Error, cannot assign to const
+	fmt.Printf("%v, %T\n", myConst, myConst)
+
+	// shadowing
+	const a int = 14
+	fmt.Printf("%v, %T\n", a, a)
 }
