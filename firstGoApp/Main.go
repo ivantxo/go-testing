@@ -5,21 +5,22 @@ import (
 )
 
 const (
-	a = iota
-	b = iota
-	c = iota
-)
+	// bit shifting operations
+	isAdmin = 1 << iota
+	isHeadquarters
+	canSeeFinancials
 
-const (
-	a2 = iota
+	canSeeAfrica
+	canSeeAsia
+	canSeeEurope
+	canSeeSouthAmerica
+	canSeeNorthAmerica
 )
 
 func main() {
-	fmt.Printf("%v\n", a)
-	fmt.Printf("%v\n", b)
-	fmt.Printf("%v\n", c)
-	fmt.Printf("%v\n", a2)
+	var roles byte = isAdmin | canSeeFinancials | canSeeEurope
+	fmt.Printf("Roles: %b\n", roles)
 
-	const b = iota
-	fmt.Printf("%v\n", b)
+	fmt.Printf("Is Admin? %v\n", isAdmin&roles == isAdmin)
+	fmt.Printf("Is Head Quarters? %v\n", isHeadquarters&roles == isHeadquarters)
 }
