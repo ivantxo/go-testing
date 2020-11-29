@@ -19,4 +19,7 @@ func main() {
 	fmt.Printf("%v\n", b)
 	fmt.Printf("%v\n", c)
 	fmt.Printf("%v\n", a2)
+
+	const b = iota
+	fmt.Printf("%v\n", b)
 }
