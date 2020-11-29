@@ -4,14 +4,19 @@ import (
 	"fmt"
 )
 
-const a int16 = 27
+const (
+	a = iota
+	b = iota
+	c = iota
+)
+
+const (
+	a2 = iota
+)
 
 func main() {
-	const myConst int = 42
-	// myConst = 27 // Error, cannot assign to const
-	fmt.Printf("%v, %T\n", myConst, myConst)
-
-	// shadowing
-	const a int = 14
-	fmt.Printf("%v, %T\n", a, a)
+	fmt.Printf("%v\n", a)
+	fmt.Printf("%v\n", b)
+	fmt.Printf("%v\n", c)
+	fmt.Printf("%v\n", a2)
 }
