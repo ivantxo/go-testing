@@ -24,4 +24,26 @@ func main() {
 	fmt.Println(e)
 	fmt.Println(f)
 	fmt.Println(g)
+	fmt.Println("")
+
+	// another way to initialise slices
+	h := make([]int, 3, 100)
+	fmt.Println(h)
+	fmt.Printf("Length: %v\n", len(h))
+	fmt.Printf("Capacity: %v\n", cap(h))
+	fmt.Println("")
+
+	// capacity doubles in arrays when appending
+	i := []int{}
+	fmt.Println(i)
+	fmt.Printf("Length: %v\n", len(i))
+	fmt.Printf("Capacity: %v\n", cap(i))
+	i = append(i, 1)
+	fmt.Println(i)
+	fmt.Printf("Length: %v\n", len(i))
+	fmt.Printf("Capacity: %v\n", cap(i))
+	i = append(i, 2, 3, 4, 5)
+	fmt.Println(i)
+	fmt.Printf("Length: %v\n", len(i))
+	fmt.Printf("Capacity: %v\n", cap(i))
 }
