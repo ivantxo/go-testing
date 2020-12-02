@@ -5,17 +5,27 @@ import (
 )
 
 func main() {
-	// Removing elements from slices
-	a := []int{1, 2, 3, 4, 5}
+	// maps
 
-	b := a[1:] // removes the first element
-	fmt.Println(b)
+	// built-in function
+	// statePopulations := make(map[string]int)
 
-	c := a[:len(a)-1] // removes an element at the end of slice
-	fmt.Println(c)
+	// literal sintax
+	statePopulations := map[string]int{
+		"QLD": 123,
+		"NSW": 456,
+		"SA":  789,
+		"TAS": 012,
+		"VIC": 345,
+		"WA":  678,
+	}
+	fmt.Println(statePopulations)
+	fmt.Println(statePopulations["QLD"])
+	fmt.Println(statePopulations)
 
-	d := append(a[:2], a[3:]...) // removes en element from the middle
-	fmt.Println(d)
-
-	fmt.Println(a) // becareful when manipulating arrays, the original array might have changed
+	// Add new elements to map
+	statePopulations["Papua"] = 455
+	fmt.Println(statePopulations["Papua"])
+	// The order of elements in a map is not guaranted to be the same
+	fmt.Println(statePopulations)
 }
