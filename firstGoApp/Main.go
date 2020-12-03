@@ -2,27 +2,18 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 // Animal struct
 type Animal struct {
-	Name   string
+	Name   string `required max: "100"`
 	Origin string
 }
 
-// Bird struct
-type Bird struct {
-	Animal
-	SpeedKPH float32
-	CanFly   bool
-}
-
 func main() {
-	// composition
-	b := Bird{}
-	b.Name = "Emu"
-	b.Origin = "Australia"
-	b.SpeedKPH = 48
-	b.CanFly = false
-	fmt.Println(b)
+	// tags
+	t := reflect.TypeOf(Animal{})
+	field, _ := t.FieldByName("Name")
+	fmt.Println(field.Tag)
 }
