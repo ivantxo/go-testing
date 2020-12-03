@@ -4,18 +4,25 @@ import (
 	"fmt"
 )
 
+// Animal struct
+type Animal struct {
+	Name   string
+	Origin string
+}
+
+// Bird struct
+type Bird struct {
+	Animal
+	SpeedKPH float32
+	CanFly   bool
+}
+
 func main() {
-	// anonymous structs
-	aDoctor := struct{ name string }{name: "John Pertwee"}
-	fmt.Println(aDoctor)
-
-	// unless maps and slices, structs have independent data sets
-	anotherDoctor := aDoctor
-	anotherDoctor.name = "Tom Baker"
-	fmt.Println(anotherDoctor)
-
-	// We could have by reference data???
-	andAnother := &aDoctor
-	andAnother.name = "Ivan Ramirez"
-	fmt.Println(andAnother)
+	// composition
+	b := Bird{}
+	b.Name = "Emu"
+	b.Origin = "Australia"
+	b.SpeedKPH = 48
+	b.CanFly = false
+	fmt.Println(b)
 }
