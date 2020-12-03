@@ -4,27 +4,18 @@ import (
 	"fmt"
 )
 
-// Doctor structure
-type Doctor struct {
-	number     int
-	actorName  string
-	episodes   []string
-	companions []string
-}
-
 func main() {
-	// structs
-
-	aDoctor := Doctor{
-		number:    3,
-		actorName: "Jon Pertwee",
-		companions: []string{
-			"Liz Shaw",
-			"Jo Grant",
-			"Sarah Jane Smith",
-		},
-	}
+	// anonymous structs
+	aDoctor := struct{ name string }{name: "John Pertwee"}
 	fmt.Println(aDoctor)
 
-	fmt.Println(aDoctor.companions)
+	// unless maps and slices, structs have independent data sets
+	anotherDoctor := aDoctor
+	anotherDoctor.name = "Tom Baker"
+	fmt.Println(anotherDoctor)
+
+	// We could have by reference data???
+	andAnother := &aDoctor
+	andAnother.name = "Ivan Ramirez"
+	fmt.Println(andAnother)
 }
