@@ -3,15 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	guess := -5
-	// short circuiting: in this case guess is less than 1, then it doesn't evaluate the
-	// other conditions, it just assumes is true.
-	if guess < 1 || returnTrue() || guess > 100 {
-		fmt.Println("The guest must be between 1 and 100")
-	}
-}
+	switch 4 {
+	case 1, 5, 10:
+		fmt.Println("one, five, or ten")
+	case 2, 4, 6:
+		fmt.Println("two, four or six")
 
-func returnTrue() bool {
-	fmt.Println("Returning true")
-	return true
+	default:
+		fmt.Println("another number")
+	}
 }
