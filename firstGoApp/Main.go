@@ -3,16 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	i := 10
-	switch { // <== tagless switch statement
-	case i <= 10:
-		fmt.Println("less than or equal to ten")
-		fallthrough // it will fall through the next case
+	// type switch
+	var i interface{} = 1
+	switch i.(type) {
+	case int:
+		fmt.Println("i is int")
 
-	case i <= 20:
-		fmt.Println("less than or equal to twenty")
+	case float64:
+		fmt.Println("i is float64")
+
+	case string:
+		fmt.Println("i is string")
 
 	default:
-		fmt.Println("another number")
+		fmt.Println("i is another type")
 	}
 }
