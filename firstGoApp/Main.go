@@ -3,9 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	i := 0
-	for i < 5 {
-		fmt.Println(i)
-		i++
+	// Adding tags is a good way to break an outer loop
+Loop:
+	for i := 1; i <= 3; i++ {
+		for j := 1; j <= 3; j++ {
+			fmt.Println(i * j)
+			if i*j >= 2 {
+				break Loop
+			}
+		}
 	}
 }
