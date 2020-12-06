@@ -1,16 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
 
 func main() {
-	// Control flow, defer, panic and recover
-	fmt.Println("start")
-	defer fmt.Println("middle") // prints at the end but before the main function returns
-	fmt.Println("end")
-	fmt.Println()
-
-	// prints end, middle, start lifo order
-	defer fmt.Println("start")
-	defer fmt.Println("middle")
-	defer fmt.Println("end")
+	res, err := http.Get("http://www.google.com/robots.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	// this structure is common, read resources, defer will close them at the end
+	robots, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s", robots)
 }
