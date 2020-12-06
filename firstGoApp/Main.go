@@ -2,21 +2,11 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
 )
 
 func main() {
-	res, err := http.Get("http://www.google.com/robots.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer res.Body.Close()
-	// this structure is common, read resources, defer will close them at the end
-	robots, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%s", robots)
+	// it will print start, defer takes the parameters when it is called and not when it is executed
+	a := "start"
+	defer fmt.Println(a)
+	a = "end"
 }
