@@ -2,23 +2,23 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 
 func main() {
-	// panic and recover from panic
-	fmt.Println("start")
-	panicker()
-	fmt.Println("end")
-}
+	// a gets a new value, however b doesn't change as they are different memory locations
+	a := 42
+	b := a
+	fmt.Println(a, b)
+	a = 27
+	fmt.Println(a, b)
 
-func panicker() {
-	fmt.Println("about to panic")
-	defer func() {
-		if err := recover(); err != nil {
-			log.Println("Error: ", err)
-		}
-	}()
-	panic("something went bad")
-	fmt.Println("done panicking")
+	fmt.Println()
+	var a1 int = 42
+	var b1 *int = &a1
+	fmt.Println(&a1, b1) // here we get the same memory address
+	fmt.Println(a1, *b1) // * by de-referencing we get the value which that memory address is pointing to
+	a1 = 37
+	fmt.Println(a1, *b1) // both memory spaces point to the same memory location
+	*b1 = 14
+	fmt.Println(a1, *b1) // both values change
 }
