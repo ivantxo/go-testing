@@ -1,15 +1,14 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello Go"))
-	})
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		panic(err.Error())
-	}
+	// this will print start, this was deferred, panic: something bad happened
+	// the order of execution is panic after defer
+	fmt.Println("start")
+	defer fmt.Println("this was deferred")
+	panic("something bad happened")
+	fmt.Println("end")
 }
