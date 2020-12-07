@@ -1,12 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 )
 
 func main() {
-	// it will print start, defer takes the parameters when it is called and not when it is executed
-	a := "start"
-	defer fmt.Println(a)
-	a = "end"
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Hello Go"))
+	})
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		panic(err.Error())
+	}
 }
