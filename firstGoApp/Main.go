@@ -21,4 +21,19 @@ func main() {
 	fmt.Println(a1, *b1) // both memory spaces point to the same memory location
 	*b1 = 14
 	fmt.Println(a1, *b1) // both values change
+	fmt.Println("")
+
+	// This will print &{42}, it an address of an object that has a field with a value of 42
+	// var ms *myStruct
+	// ms = &myStruct{foo: 42}
+	// fmt.Println(ms)
+
+	var ms *myStruct
+	ms = new(myStruct)
+	ms.foo = 42         // (*ms).foo this will also work
+	fmt.Println(ms.foo) // (*ms).foo this will also work
+}
+
+type myStruct struct {
+	foo int
 }
