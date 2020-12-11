@@ -5,14 +5,16 @@ import (
 )
 
 func main() {
-	s := sum(1, 2, 3, 4, 5)
-	fmt.Println("The sum is: ", s)
+	r, err := divide(5.0, 0.0)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(r)
 }
 
-// function with variadic parameters
-func sum(values ...int) (result int) {
-	for _, v := range values {
-		result += v
+func divide(a, b float64) (float64, error) {
+	if b == 0.0 {
+		return 0.0, fmt.Errorf("Cannot divide by zero")
 	}
-	return
+	return a / b, nil
 }
