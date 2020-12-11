@@ -5,15 +5,15 @@ import (
 )
 
 func main() {
-	sum("The sum is: ", 1, 2, 3, 4, 5)
+	s := sum(1, 2, 3, 4, 5)
+	fmt.Println("The sum is: ", s)
 }
 
 // function with variadic parameters
-func sum(msg string, values ...int) {
-	fmt.Println(values)
+func sum(values ...int) int {
 	result := 0
 	for _, v := range values {
 		result += v
 	}
-	fmt.Println(msg, result)
+	return result
 }
