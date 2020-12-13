@@ -5,19 +5,22 @@ import (
 )
 
 func main() {
-	var divide func(float64, float64) (float64, error)
-
-	divide = func(a, b float64) (float64, error) {
-		if b == 0.0 {
-			return 0.0, fmt.Errorf("Cannot divide by zero")
-		}
-		return a / b, nil
-
+	g := greeter{
+		greeting: "Hola",
+		name:     "Ivan",
 	}
-	d, err := divide(5.0, 0.0)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(d)
+	g.greet()
+	fmt.Println("The new name is:", g.name)
+}
+
+type greeter struct {
+	greeting string
+	name     string
+}
+
+// If using * the values of the original struct can be manipulated
+// func (g *greeter) greet() {
+func (g greeter) greet() {
+	fmt.Println(g.greeting, g.name)
+	g.name = ""
 }
