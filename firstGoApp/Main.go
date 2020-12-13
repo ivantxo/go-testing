@@ -5,22 +5,19 @@ import (
 )
 
 func main() {
-	g := greeter{
-		greeting: "Hola",
-		name:     "Ivan",
-	}
-	g.greet()
-	fmt.Println("The new name is:", g.name)
+	var w Writer = ConsoleWriter{}
+	w.Write([]byte("Hello Go!"))
 }
 
-type greeter struct {
-	greeting string
-	name     string
+// Writer Interface
+type Writer interface {
+	Write([]byte) (int, error)
 }
 
-// If using * the values of the original struct can be manipulated
-// func (g *greeter) greet() {
-func (g greeter) greet() {
-	fmt.Println(g.greeting, g.name)
-	g.name = ""
+// ConsoleWriter Struct
+type ConsoleWriter struct{}
+
+func (cw ConsoleWriter) Write(data []byte) (int, error) {
+	n, err := fmt.Println(string(data))
+	return n, err
 }
