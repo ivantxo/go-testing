@@ -9,6 +9,15 @@ func main() {
 	var wc WriterCloser = NewBufferWriterCloser()
 	wc.Write([]byte("Hello YouTube listeners, this is a test"))
 	wc.Close()
+
+	// type conversion
+	// r, ok := wc.(io.Reader) // conversion fails, but application doesn't crash
+	r, ok := wc.(*BufferWriterCloser)
+	if ok {
+		fmt.Println("Type converted successfully:", r)
+	} else {
+		fmt.Println("Conversion failed")
+	}
 }
 
 // Writer Interface
