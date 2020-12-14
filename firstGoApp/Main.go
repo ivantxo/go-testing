@@ -1,28 +1,72 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 )
 
 func main() {
-	myInt := IntCounter(0)
-	var inc Incrementer = &myInt
-	for i := 0; i < 10; i++ {
-		fmt.Println(inc.Increment())
+	var wc WriterCloser = NewBufferWriterCloser()
+	wc.Write([]byte("Hello YouTube listeners, this is a test"))
+	wc.Close()
+}
+
+// Writer Interface
+type Writer interface {
+	Write([]byte) (int, error)
+}
+
+// Closer Interface
+type Closer interface {
+	Close() error
+}
+
+// WriterCloser Interface
+type WriterCloser interface {
+	Writer
+	Closer
+}
+
+// BufferWriterCloser struct
+type BufferWriterCloser struct {
+	buffer *bytes.Buffer
+}
+
+func (bwc *BufferWriterCloser) Write(data []byte) (int, error) {
+	n, err := bwc.buffer.Write(data)
+	if err != nil {
+		return 0, err
 	}
-	fmt.Println("")
+
+	v := make([]byte, 8)
+	for bwc.buffer.Len() > 8 {
+		_, err := bwc.buffer.Read(v)
+		if err != nil {
+			return 0, err
+		}
+		_, err = fmt.Println(string(v))
+		if err != nil {
+			return 0, err
+		}
+	}
+	return n, nil
 }
 
-// Incrementer interface
-type Incrementer interface {
-	Increment() int
+// Close function
+func (bwc *BufferWriterCloser) Close() error {
+	for bwc.buffer.Len() > 0 {
+		data := bwc.buffer.Next(8)
+		_, err := fmt.Println(string(data))
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
-// IntCounter int
-type IntCounter int
-
-// Increment implementation
-func (ic *IntCounter) Increment() int {
-	*ic++
-	return int(*ic)
+// NewBufferWriterCloser function
+func NewBufferWriterCloser() *BufferWriterCloser {
+	return &BufferWriterCloser{
+		buffer: bytes.NewBuffer([]byte{}),
+	}
 }
