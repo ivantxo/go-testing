@@ -5,19 +5,24 @@ import (
 )
 
 func main() {
-	var w Writer = ConsoleWriter{}
-	w.Write([]byte("Hello Go!"))
+	myInt := IntCounter(0)
+	var inc Incrementer = &myInt
+	for i := 0; i < 10; i++ {
+		fmt.Println(inc.Increment())
+	}
+	fmt.Println("")
 }
 
-// Writer Interface
-type Writer interface {
-	Write([]byte) (int, error)
+// Incrementer interface
+type Incrementer interface {
+	Increment() int
 }
 
-// ConsoleWriter Struct
-type ConsoleWriter struct{}
+// IntCounter int
+type IntCounter int
 
-func (cw ConsoleWriter) Write(data []byte) (int, error) {
-	n, err := fmt.Println(string(data))
-	return n, err
+// Increment implementation
+func (ic *IntCounter) Increment() int {
+	*ic++
+	return int(*ic)
 }
