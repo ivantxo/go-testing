@@ -2,16 +2,15 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
-	var i interface{} = 2
-	switch i.(type) {
-	case int:
-		fmt.Println("i is an integer")
-	case string:
-		fmt.Println("i is a string")
-	default:
-		fmt.Println("Unknow type")
-	}
+	var msg = "Hello"
+	go func(msg string) {
+		fmt.Println(msg)
+	}(msg)
+	msg = "Goodbye"
+	// explicitly using sleep to wait for the go routine
+	time.Sleep(100 * time.Millisecond)
 }
