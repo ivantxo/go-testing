@@ -2,15 +2,19 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"sync"
 )
+
+// asynchronous routine using Wait Group
+var wg = sync.WaitGroup{}
 
 func main() {
 	var msg = "Hello"
+	wg.Add(1)
 	go func(msg string) {
 		fmt.Println(msg)
+		wg.Done()
 	}(msg)
 	msg = "Goodbye"
-	// explicitly using sleep to wait for the go routine
-	time.Sleep(100 * time.Millisecond)
+	wg.Wait()
 }
