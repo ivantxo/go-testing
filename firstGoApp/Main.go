@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-// asynchronous routine using Wait Group
+// Asynchronous routine using Wait Group
 var wg = sync.WaitGroup{}
 var counter = 0
 var m = sync.RWMutex{}
